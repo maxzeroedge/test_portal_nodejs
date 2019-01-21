@@ -1,0 +1,42 @@
+Type: 'AWS::DynamoDB::Table'
+DeletionPolicy: Retain
+Properties:
+  TableName: users
+  AttributeDefinitions:
+    - AttributeName: id
+      AttributeType: S
+
+    - AttributeName: test_id
+      AttributeType: S
+
+  KeySchema:
+    - AttributeName: id
+      KeyType: HASH
+
+  GlobalSecondaryIndexes:
+    -
+      IndexName: testIndex
+      KeySchema:
+       -
+         AttributeName: test_id
+         KeyType: HASH
+      Projection:
+        ProjectionType: ALL
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+    -
+      IndexName: testIndex
+      KeySchema:
+       -
+         AttributeName: test_id
+         KeyType: HASH
+      Projection:
+        ProjectionType: ALL
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+
+  ProvisionedThroughput:
+    ReadCapacityUnits: 1
+    WriteCapacityUnits: 1
