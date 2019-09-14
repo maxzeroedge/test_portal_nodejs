@@ -1,0 +1,49 @@
+Type: 'AWS::DynamoDB::Table'
+DeletionPolicy: Retain
+Properties:
+  TableName: ${self:service}Question${self:custom.config.appStage}
+  AttributeDefinitions:
+    -
+      AttributeName: id
+      AttributeType: S
+    -
+      AttributeName: examId
+      AttributeType: S
+    -
+      AttributeName: createdOn
+      AttributeType: N
+
+  KeySchema:
+    -
+      AttributeName: id
+      KeyType: HASH
+    -
+      AttributeName: createdOn
+      KeyType: RANGE
+  
+  GlobalSecondaryIndexes:
+    - IndexName: idIndex
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      Projection:
+        ProjectionType: ALL
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+
+    - IndexName: examIdIndex
+      KeySchema:
+        - AttributeName: examId
+          KeyType: HASH
+        - AttributeName: createdOn
+          KeyType: RANGE
+      Projection:
+        ProjectionType: ALL
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+
+  ProvisionedThroughput:
+    ReadCapacityUnits: 1
+    WriteCapacityUnits: 1

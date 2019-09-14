@@ -1,0 +1,3 @@
+appStage: dev
+appRegion: localhost
+appDBPath: /media/pc/Store/Projects/data/dynamodb

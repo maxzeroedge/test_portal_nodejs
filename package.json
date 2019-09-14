@@ -1,15 +1,16 @@
 {
-  "name": "test_portal_server_nodejs",
+  "name": "test_sls",
   "version": "1.0.0",
   "description": "",
-  "main": "handler.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "serverless-dynamodb-local": "^0.2.36"
+  "devDependencies": {
+    "serverless-dynamodb-local": "^0.2.38",
+    "serverless-offline": "^5.11.0"
   }
 }

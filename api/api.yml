@@ -1,0 +1,17 @@
+adminPortal:
+  handler: api/handler.apiAdminHandler
+  description: Endpoints to handle all test portal requests
+  events:
+    - http:
+        path: admin
+        method: POST
+        cors: true
+
+studentPortal:
+  handler: api/handler.apiCandidateHandler
+  description: Endpoints to handle all test portal requests
+  events:
+    - http:
+        path: test
+        method: POST
+        cors: true
