@@ -22,8 +22,8 @@ const listExams = async (attrs) => {
 		},
 		"KeyConditionExpression": "#status = :status and #createdOn < :createdOn"
 	}
-	const loginResponse = await dbHandler.docClient.query(query).promise();
-	return loginResponse.Items.length ? loginResponse.Items[0] : false;
+	const examResponse = await dbHandler.docClient.query(query).promise();
+	return examResponse.Items.length ? examResponse.Items[0] : false;
 }
 
 module.exports = {
