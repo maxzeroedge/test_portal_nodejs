@@ -12,5 +12,9 @@
   "devDependencies": {
     "serverless-dynamodb-local": "^0.2.38",
     "serverless-offline": "^5.11.0"
+  },
+  "dependencies": {
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.26"
   }
 }

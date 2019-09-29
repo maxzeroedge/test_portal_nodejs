@@ -1,26 +1,19 @@
-'use strict';
-
-const loginHandler = async (event, context, callback) => {
-	//
-}
-
-const registerHandler = async (event, context, callback) => {
-	//
-}
+var adminHandler = require('./adminHandler');
+var candidateHandler = require('./candidateHandler')
 
 module.exports.apiAdminHandler = async (event, context, callback) => {
 	let body = event.body
 	if(typeof body == 'string'){
 		body = JSON.parse(body)
 	}
-	switch (body) {
+	switch (body.eventType) {
 		case 'login':
-			loginHandler(event, context, callback)
+			adminHandler.loginHandler(body, context, callback)
 			break;
 		case 'listExams':
-			listExams(event, context, callback)
+			adminHandler.listExams(body, context, callback)
 		case 'listEntries':
-			listEntries(event, context, callback)
+			adminHandler.listEntries(body, context, callback)
 			break;
 	
 		default:
@@ -33,15 +26,15 @@ module.exports.apiCandidateHandler = async (event, context, callback) => {
 	if(typeof body == 'string'){
 		body = JSON.parse(body)
 	}
-	switch (body) {
+	switch (body.eventType) {
 		case 'register':
-			registerHandler(event, context, callback)
+			candidateHandler.registerHandler(body, context, callback)
 			break;
 		case 'listQuestions':
-			listQuestions(event, context, callback)
+			candidateHandler.listQuestions(body, context, callback)
 			break;
 		case 'getQuestion':
-			getQuestion(event, context, callback)
+			candidateHandler.getQuestion(body, context, callback)
 			break;
 		default:
 			break;

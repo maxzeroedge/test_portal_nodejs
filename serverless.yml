@@ -53,6 +53,10 @@ provider:
 
   environment: 
     FUNCTION_PREFIX: ${self:service}-${self:provider.stage}
+    USER_TABLE: ${self:service}User${self:custom.config.appStage}
+    CANDIDATE_TABLE: ${self:service}Candidate${self:custom.config.appStage}
+    EXAM_TABLE: ${self:service}Exam${self:custom.config.appStage}
+    QUESTION_TABLE: ${self:service}Question${self:custom.config.appStage}
 
 # you can add packaging information here
 #package:

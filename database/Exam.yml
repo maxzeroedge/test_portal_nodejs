@@ -10,6 +10,12 @@ Properties:
       AttributeName: status
       AttributeType: S
     - 
+      AttributeName: institute
+      AttributeType: S
+    - 
+      AttributeName: year
+      AttributeType: N
+    - 
       AttributeName: createdOn
       AttributeType: N
         
@@ -33,11 +39,23 @@ Properties:
         ReadCapacityUnits: 1
         WriteCapacityUnits: 1
 
-    - IndexName: statusIndex
+    - IndexName: statusCreatedOnIndex
       KeySchema:
         - AttributeName: status
           KeyType: HASH
         - AttributeName: createdOn
+          KeyType: RANGE
+      Projection:
+        ProjectionType: ALL
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+
+    - IndexName: instituteYearIndex
+      KeySchema:
+        - AttributeName: institute
+          KeyType: HASH
+        - AttributeName: year
           KeyType: RANGE
       Projection:
         ProjectionType: ALL
