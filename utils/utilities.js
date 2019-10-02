@@ -23,7 +23,13 @@ const sanitizeData = (data) => {
 			//
 		} else {
 			data = data.map((v, k)=>{
+				// Don't sanitize email or username
+				// TODO: Use /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+				// from https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
 				if(k == 'username'){
+					if(/[\w\d.]+@[\w\d.]+\.\w+/.test(v)){
+						return "";
+					}
 					return v;
 				}
 				return sanitizeData(v)
