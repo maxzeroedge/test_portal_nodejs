@@ -46,8 +46,18 @@ const listEntries = async (body, context, callback) => {
 	})
 }
 
+// TODO: Decide Structure
+const updateEntry = async (body, context, callback) => {
+	const entry = await candidateQB.updatEntry(body.query)
+	respondBack({
+		callback,
+		body: {entry}
+	})
+}
+
 module.exports = {
 	loginHandler,
 	listExams,
-	listEntries
+	listEntries,
+	updateEntry
 }

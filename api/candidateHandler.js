@@ -39,8 +39,20 @@ const getQuestion = async (body, context, callback) => {
 	})
 }
 
+// TODO: Decide Structure
+const updateAnswer = async (body, context, callback) => {
+	const candidate = await candidateQB.updateAnswer(body.query)
+	respondBack({
+		callback,
+		body: {
+			candidate
+		}
+	})
+}
+
 module.exports = {
 	registerHandler,
 	listQuestions,
-	getQuestion
+	getQuestion,
+	updateAnswer
 }

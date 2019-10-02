@@ -20,6 +20,8 @@ module.exports.apiAdminHandler = async (event, context, callback) => {
 			case 'listEntries':
 				adminHandler.listEntries(body, context, callback)
 				break;
+			case 'updateEntry':
+				adminHandler.updateEntry(body, context, callback)
 		
 			default:
 				break;
@@ -51,6 +53,8 @@ module.exports.apiCandidateHandler = async (event, context, callback) => {
 			case 'getQuestion':
 				candidateHandler.getQuestion(body, context, callback)
 				break;
+			case 'updateAnswer':
+				candidateHandler.updateAnswer(body, context, callback)
 			default:
 				break;
 		}

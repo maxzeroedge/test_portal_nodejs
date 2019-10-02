@@ -66,8 +66,38 @@ const registerUser = async (attrs) => {
 	return resp.Attributes
 }
 
+// TODO
+const updateAnswer = async(attrs) => {
+	let query = {
+		"TableName": process.env.CANDIDATE_TABLE,
+		"Key": {
+			id: attrs.id
+		},
+		"ExpressionAttributeValues": {},
+		"UpdateExpression": "",
+		"ReturnValues": "ALL_NEW"
+	}
+	return await dbHandler.docClient.update(query).promise()
+}
+
+// TODO
+const updateEntry = async(attrs) => {
+	let query = {
+		"TableName": process.env.CANDIDATE_TABLE,
+		"Key": {
+			id: attrs.id
+		},
+		"ExpressionAttributeValues": {},
+		"UpdateExpression": "",
+		"ReturnValues": "ALL_NEW"
+	}
+	return await dbHandler.docClient.update(query).promise()
+}
+
 module.exports = {
 	listEntries,
 	getCandidate,
-	registerUser
+	registerUser,
+	updateAnswer,
+	updateEntry
 }
