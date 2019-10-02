@@ -1,5 +1,9 @@
 const dbHandler = require('./dbHandler')
 
+/**
+ * 
+ * @param {*} attrs {username, password}
+ */
 const loginQuery = async (attrs) => {
 	const salt = btoa(`${attrs.username}_${attrs.password}`).substring(5)
 	let query = {

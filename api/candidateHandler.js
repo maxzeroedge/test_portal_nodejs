@@ -1,13 +1,42 @@
-const registerHandler = async (event, context, callback) => {
+const constants = require('../utils/constants')
+const respondBack = require('../utils/utilities').respondBack
+const questionsQB = require('../database/questionQueryBuilder')
+const candidateQB = require('../database/candidateQueryBuilder')
 
+const registerHandler = async (body, context, callback) => {
+	const candidate = await candidateQB.registerUser(body.query)
+	respondBack({
+		callback,
+		body: {candidate}
+	})
 }
 
-const listQuestions = async (event, context, callback) => {
-
+/**
+ * 
+ * @param {*} body { query: { examId, (createdOn) } }
+ * @param {*} context 
+ * @param {*} callback 
+ */
+const listQuestions = async (body, context, callback) => {
+	const questions = await questionsQB.listQuestions(body.query)
+	respondBack({
+		callback,
+		body: {questions}
+	})
 }
 
-const getQuestion = async (event, context, callback) => {
-
+/**
+ * 
+ * @param {*} body {query: {id}}
+ * @param {*} context 
+ * @param {*} callback 
+ */
+const getQuestion = async (body, context, callback) => {
+	const question = await questionsQB.getQuestion(body.query)
+	respondBack({
+		callback,
+		body: {question}
+	})
 }
 
 module.exports = {
