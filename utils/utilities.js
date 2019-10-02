@@ -1,4 +1,5 @@
 const constants = require('./constants')
+const sanitizer = require('sanitize')()
 
 const respondBack = (attrs) => {
 	const {error, statusCode, body, headers, callback} = attrs
@@ -21,12 +22,16 @@ const sanitizeData = (data) => {
 		if(Arrays.isArray(data)){
 			//
 		} else {
-			data = data.map(v=>{
+			data = data.map((v, k)=>{
+				if(k == 'username'){
+					return v;
+				}
 				return sanitizeData(v)
 			})
 		}
 	} else if(typeof data == 'string'){
 		// TODO:
+		data = sanitizer.value(data, 'string')
 	}
 	return data
 }

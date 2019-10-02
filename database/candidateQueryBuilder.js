@@ -1,5 +1,7 @@
 const dbHandler = require('./dbHandler')
 const sanitizeData = require('../utils/utilities').sanitizeData
+const uuid = require('uuid/v4')
+const moment = require('moment')
 
 /**
  * 
@@ -52,7 +54,10 @@ const getCandidate = async (attrs) => {
  * @param {*} attrs {candidateData}
  */
 const registerUser = async (attrs) => {
-	const {name, instituteId, branch, experience} = attrs
+	if(!attrs.id){
+		attrs.id = uuid()
+	}
+	attrs.lastModifiedOn = moment().valueOf()
 	const resp = await dbHandler.docClient.put({
 		"TableName": process.env.CANDIDATE_TABLE,
 		"Item": attrs,
