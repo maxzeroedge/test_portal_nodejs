@@ -48,7 +48,7 @@ const listEntries = async (body, context, callback) => {
 
 // TODO: Decide Structure
 const updateEntry = async (body, context, callback) => {
-	const entry = await candidateQB.updatEntry(body.query)
+	const entry = await candidateQB.updateEntry(body.query)
 	respondBack({
 		callback,
 		body: {entry}

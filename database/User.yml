@@ -9,15 +9,58 @@ Properties:
     -
       AttributeName: password
       AttributeType: S
+    -
+      AttributeName: id
+      AttributeType: S
+    -
+      AttributeName: examId
+      AttributeType: S
+    -
+      AttributeName: createdOn
+      AttributeType: N
 
   KeySchema:
     -
-      AttributeName: email
+      AttributeName: id
       KeyType: HASH
     -
-      AttributeName: password
+      AttributeName: createdOn
       KeyType: RANGE
   
+  GlobalSecondaryIndexes:
+    - IndexName: idIndex
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      Projection:
+        ProjectionType: ALL
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+
+    - IndexName: examIdIndex
+      KeySchema:
+        - AttributeName: examId
+          KeyType: HASH
+        - AttributeName: createdOn
+          KeyType: RANGE
+      Projection:
+        ProjectionType: ALL
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+
+    - IndexName: emailPasswordIndex
+      KeySchema:
+        - AttributeName: email
+          KeyType: HASH
+        - AttributeName: password
+          KeyType: RANGE
+      Projection:
+        ProjectionType: ALL
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
 
   ProvisionedThroughput:
     ReadCapacityUnits: 1

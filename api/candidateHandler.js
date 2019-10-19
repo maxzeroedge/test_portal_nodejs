@@ -1,13 +1,13 @@
 const constants = require('../utils/constants')
 const respondBack = require('../utils/utilities').respondBack
 const questionsQB = require('../database/questionQueryBuilder')
-const candidateQB = require('../database/candidateQueryBuilder')
+const userQB = require('../database/userQueryBuilder')
 
 const registerHandler = async (body, context, callback) => {
-	const candidate = await candidateQB.registerUser(body.query)
+	const user = await userQB.registerUser(body.query)
 	respondBack({
 		callback,
-		body: {candidate}
+		body: {user}
 	})
 }
 
@@ -41,11 +41,11 @@ const getQuestion = async (body, context, callback) => {
 
 // TODO: Decide Structure
 const updateAnswer = async (body, context, callback) => {
-	const candidate = await candidateQB.updateAnswer(body.query)
+	const user = await userQB.updateAnswer(body.query)
 	respondBack({
 		callback,
 		body: {
-			candidate
+			user
 		}
 	})
 }

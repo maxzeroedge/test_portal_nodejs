@@ -1,7 +1,7 @@
 Type: 'AWS::DynamoDB::Table'
 DeletionPolicy: Retain
 Properties:
-  TableName: ${self:service}Candidate${self:custom.config.appStage}
+  TableName: ${self:service}Response${self:custom.config.appStage}
   AttributeDefinitions:
     -
       AttributeName: id
@@ -10,15 +10,18 @@ Properties:
       AttributeName: examId
       AttributeType: S
     -
+      AttributeName: questionId
+      AttributeType: S
+    -
       AttributeName: lastModifiedOn
       AttributeType: N
 
   KeySchema:
     -
-      AttributeName: id
+      AttributeName: questionId
       KeyType: HASH
     -
-      AttributeName: lastModifiedOn
+      AttributeName: examId
       KeyType: RANGE
   
   GlobalSecondaryIndexes:
@@ -32,11 +35,11 @@ Properties:
         ReadCapacityUnits: 1
         WriteCapacityUnits: 1
 
-    - IndexName: examIdIndex
+    - IndexName: examIdQuestionIdIndex
       KeySchema:
         - AttributeName: examId
           KeyType: HASH
-        - AttributeName: lastModifiedOn
+        - AttributeName: questionId
           KeyType: RANGE
       Projection:
         ProjectionType: ALL
