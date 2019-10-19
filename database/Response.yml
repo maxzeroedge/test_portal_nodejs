@@ -10,7 +10,7 @@ Properties:
       AttributeName: examId
       AttributeType: S
     -
-      AttributeName: questionId
+      AttributeName: userId
       AttributeType: S
     -
       AttributeName: lastModifiedOn
@@ -18,7 +18,7 @@ Properties:
 
   KeySchema:
     -
-      AttributeName: questionId
+      AttributeName: userId
       KeyType: HASH
     -
       AttributeName: examId
@@ -35,11 +35,11 @@ Properties:
         ReadCapacityUnits: 1
         WriteCapacityUnits: 1
 
-    - IndexName: examIdQuestionIdIndex
+    - IndexName: examIdUserIdIndex
       KeySchema:
         - AttributeName: examId
           KeyType: HASH
-        - AttributeName: questionId
+        - AttributeName: userId
           KeyType: RANGE
       Projection:
         ProjectionType: ALL
