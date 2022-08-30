@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.26",
+    "moment-timezone": "^0.5.35",
     "sanitize": "^2.1.0",
     "uuid": "^3.3.3"
   }
